@@ -3,12 +3,15 @@ import Document from './Document';
 
 export default class App extends Component {
   getDocument() {
-    const body = ['用具', '小毛巾', '\n\n', '新生儿']
-    const title = 'Foo'
+    const body = [
+      ['用具', '小毛巾'],
+      ['新生儿'],
+    ];
+    const title = 'Foo';
 
     return {
-      'body': body,
-      'title': title,
+      body,
+      title,
     }
   }
 

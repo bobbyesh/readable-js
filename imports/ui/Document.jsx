@@ -1,21 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Paragraph from './Paragraph';
+
+import Word from './Word';
 
 export default class Document extends Component {
   renderParagraphs() {
-    var paragraphs = [];
-    var bodyArray = this.props.document.body;
-    var count = 0;
-    while (bodyArray.length !== 0) {
-      var paragraphIndex = bodyArray.findIndex(elem => elem === '\n\n');
-      if (paragraphIndex !== -1) {
-        paragraphIndex = bodyArray.length;
-      }
-      const paragraph = bodyArray.splice(0, paragraphIndex);
-      paragraphs.push(paragraph);
-    }
-
-    return paragraphs.map((elem, i) => <p key={i}>{elem}</p>)
+    const body = this.props.document.body;
+    return body.map((elem, i) => <Paragraph key={i} words={elem}/>);
   }
 
   render() {
@@ -32,7 +24,7 @@ export default class Document extends Component {
 
 Document.propTypes = {
   document: PropTypes.shape({
-    body: PropTypes.arrayOf(PropTypes.string).isRequired,
+    body: PropTypes.arrayOf(Paragraph.propTypes.words).isRequired,
     title: PropTypes.string.isRequired,
   }),
 }
