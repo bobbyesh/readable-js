@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Document from './Document';
 
+
 export default class App extends Component {
   getDocument() {
     const body = [
@@ -21,15 +22,15 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        <header>
-          <h1>Your Document</h1>
-        </header>
+        <div className="container">
+          <header>
+            <h1>Your Document</h1>
+          </header>
 
-        <div>
-          {this.renderDocument()}
+          <div>
+            {this.renderDocument()}
+          </div>
         </div>
-      </div>
     );
   }
 }

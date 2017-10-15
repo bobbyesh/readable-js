@@ -1,32 +1,46 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-export default class Word extends Component {
+import { selectWord } from '../actions';
+
+class Word extends Component {
   constructor(props) {
     super(props)
     this.state = { isClicked: false };
   }
 
   componentDidMount() {
-    var rect = ReactDOM.findDOMNode(this).getBoundingClientRect();
+    var positionRect = ReactDOM.findDOMNode(this).getBoundingClientRect();
     this.setState({
-      top: rect.top,
-      left: rect.left,
-      bottom: rect.bottom,
-      right: rect.right,
+      positionRect,
       ...this.state,
     })
   }
 
+  onWordClick(dispatch) {
+    console.log('onword')
+    dispatch(selectWord(this.props.word, this.state.positionRect));
+  }
+
   render() {
     return (
-      <span>{this.props.word}</span>
+      <span>{this.props.word.word}</span>
     )
   }
 }
 
 Word.propTypes = {
-  word: PropTypes.string.isRequired,
-  key: PropTypes.number.isRequired,
+  word: PropTypes.shape({
+    word: PropTypes.string.isRequired,
+    paragraphKey: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+  }),
 }
+
+const mapDispatchToProps = dispatch => {
+  return {onClick: onWordClick}
+}
+
+export default connect(null, mapDispatchToProps)(Word);
