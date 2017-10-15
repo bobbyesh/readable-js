@@ -9,7 +9,7 @@ export default class Word extends Component {
   }
 
   componentDidMount() {
-    var rect = ReactDOM.findDOMNode(this).getBoundingClientRect();;
+    var rect = ReactDOM.findDOMNode(this).getBoundingClientRect();
     this.setState({
       top: rect.top,
       left: rect.left,
