@@ -11,12 +11,7 @@ export default class Document extends Component {
       this.state = {
         left: 0,
         top: 0,
-        word: {
-          word: '',
-          paragraphId: 0,
-          id: 0,
-          definitions: [''],
-        },
+        word: {},
         isSelected: false,
       };
 
@@ -42,14 +37,9 @@ export default class Document extends Component {
       this.setState({
         left: 0,
         top: 0,
-        word: {
-          word: '',
-          paragraphId: 0,
-          id: 0,
-          definitions: [''],
-        },
+        word: {},
         isSelected: false,
-      })
+      });
     }
 
     renderParagraphs() {
