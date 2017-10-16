@@ -5,9 +5,12 @@ import Word from './Word';
 export default class Paragraph extends Component {
   render() {
     const words = this.props.words.map((elem, i) => {
-      const obj = {word: elem, paragraphKey: this.props.id, id: i};
-
-      return <Word word={obj} key={i} />
+      return <Word
+               word={elem}
+               key={i}
+               updateSelectedWord={this.props.updateSelectedWord}
+               setWord={this.props.setWord}
+             />
     })
 
     return <p>{words}</p>
@@ -15,6 +18,7 @@ export default class Paragraph extends Component {
 }
 
 Paragraph.propTypes = {
-  words: PropTypes.arrayOf(PropTypes.string).isRequired,
+  words: PropTypes.arrayOf(PropTypes.object).isRequired,
   id: PropTypes.number.isRequired,
+  updateSelectedWord: PropTypes.func.isRequired,
 }

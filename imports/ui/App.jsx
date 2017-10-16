@@ -7,7 +7,16 @@ export default class App extends Component {
     const body = [
       ['用具', '小毛巾'],
       ['新生儿'],
-    ];
+    ].map((paragraph, paragraphId) => {
+        return paragraph.map((word, wordId) => {
+          return {
+            word: word,
+            id: wordId,
+            paragraphId: paragraphId,
+            definitions: ['This is definition 1', 'This is definition 2']
+          }
+        })
+    });
     const title = 'Foo';
 
     return {
