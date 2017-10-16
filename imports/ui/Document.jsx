@@ -79,13 +79,11 @@ export default class Document extends Component {
 
     render() {
       return (
-        <div>
+        <article>
           <h3>{this.props.document.title}</h3>
-          <div>
-            {this.renderParagraphs()}
-          </div>
+          {this.renderParagraphs()}
           {this.state.isSelected ? this.renderDefinitionBox() : null}
-        </div>
+        </article>
       )
     }
 }
