@@ -28,9 +28,9 @@ export default class DefinitionBox extends Component {
     const style = {
       display: 'block',
       backgroundColor: 'blue',
-      position: 'absolute',
-      left: this.props.x,
-      top:  this.props.y,
+      position: 'fixed',
+      left: this.props.x + 10,
+      top:  this.props.y + 20,
     }
 
     return(
