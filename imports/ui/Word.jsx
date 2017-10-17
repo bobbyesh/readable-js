@@ -10,16 +10,7 @@ export default class Word extends Component {
   }
 
   onClick(event) {
-    const x = event.clientX;
-    const y = event.clientY;
-    this.props.updateSelectedWord(x - this.state.offsetX + 50, y - 30, this.props.word);
-  }
-
-  componentDidMount() {
-    const clientRect = ReactDOM.findDOMNode(this).getBoundingClientRect();
-    this.setState(prevState => {
-      return {...prevState, offsetX: clientRect.left, offsetY: clientRect.top}
-    });
+    this.props.updateSelectedWord(this.props.word);
   }
 
   render() {

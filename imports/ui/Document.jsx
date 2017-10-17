@@ -19,15 +19,14 @@ export default class Document extends Component {
       this.unselectWord = this.unselectWord.bind(this);
       this.renderDefinitionBox = this.renderDefinitionBox.bind(this);
       this.renderParagraphs = this.renderParagraphs.bind(this);
+      this.onClick = this.onClick.bind(this);
     }
 
-    updateSelectedWord(x, y, word) {
+    updateSelectedWord(word) {
       this.setState((prevState, props) => {
         return {
           ...prevState,
           isSelected: true,
-          x,
-          y,
           word,
         }
       });
@@ -67,6 +66,18 @@ export default class Document extends Component {
       )
     }
 
+    onClick(event) {
+      const x = event.clientX;
+      const y = event.clientY;
+      this.setState(prevState => {
+        return {
+          ...prevState,
+          x,
+          y,
+        }
+      })
+    }
+
     render() {
       const style = {
         article: {
@@ -86,7 +97,7 @@ export default class Document extends Component {
       }
 
       return (
-        <article style={style.article}>
+        <article style={style.article} onClick={this.onClick}>
           <header style={style.title}>{this.props.document.title}</header>
           <div style={style.div}>
             {this.renderParagraphs()}
