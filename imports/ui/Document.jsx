@@ -9,8 +9,8 @@ export default class Document extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        left: 0,
-        top: 0,
+        x: 0,
+        y: 0,
         word: {},
         isSelected: false,
       };
@@ -21,22 +21,22 @@ export default class Document extends Component {
       this.renderParagraphs = this.renderParagraphs.bind(this);
     }
 
-    updateSelectedWord(positionRect, word) {
+    updateSelectedWord(x, y, word) {
       this.setState((prevState, props) => {
         return {
           ...prevState,
           isSelected: true,
-          left: positionRect.left,
-          top: positionRect.top,
-          word
+          x,
+          y,
+          word,
         }
       });
     }
 
     unselectWord() {
       this.setState({
-        left: 0,
-        top: 0,
+        x: 0,
+        y: 0,
         word: {},
         isSelected: false,
       });
@@ -58,8 +58,8 @@ export default class Document extends Component {
     renderDefinitionBox() {
       return (
         <DefinitionBox
-          left={this.state.left}
-          top={this.state.top}
+          x={this.state.x}
+          y={this.state.y}
           word={this.state.word}
           updateSelectedWord={this.updateSelectedWord}
           unselectWord={this.unselectWord}
@@ -68,11 +68,30 @@ export default class Document extends Component {
     }
 
     render() {
+      const style = {
+        article: {
+          fontSize: '18px',
+        },
+        title: {
+          fontWeight: 400,
+          fontSize: '2em',
+          lineHeight: '1.3em',
+          marginBottom: '5px',
+          marginTop: 0,
+          paddingTop: 15,
+        },
+        div: {
+          paddingTop: 25,
+        }
+      }
+
       return (
-        <article>
-          <h3>{this.props.document.title}</h3>
-          {this.renderParagraphs()}
-          {this.state.isSelected ? this.renderDefinitionBox() : null}
+        <article style={style.article}>
+          <header style={style.title}>{this.props.document.title}</header>
+          <div style={style.div}>
+            {this.renderParagraphs()}
+            {this.state.isSelected ? this.renderDefinitionBox() : null}
+          </div>
         </article>
       )
     }

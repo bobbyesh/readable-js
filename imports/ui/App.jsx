@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Document from './Document';
-
+import Navbar from './Navbar';
 
 export default class App extends Component {
   getDocument() {
@@ -32,12 +32,15 @@ export default class App extends Component {
   render() {
     return (
         <div className="container">
-          <header>
-            <h1>Your Document</h1>
-          </header>
-
-          <div>
-            {this.renderDocument()}
+          <Navbar />
+          <div className='row'>
+            <div className="col-md-3">
+            </div>
+            <div className="col-md-5">
+              {this.renderDocument()}
+            </div>
+            <div className="col-md-3">
+            </div>
           </div>
         </div>
     );

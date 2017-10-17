@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import AddDefinition from './AddDefinition';
+import ReactDOM from 'react-dom';
 
 export default class DefinitionBox extends Component {
   constructor(props) {
     super(props);
     this.onClick = this.onClick.bind(this);
     this.addDefinition = this.addDefinition.bind(this);
-    this.state = { newDefinitions: [] }
+    this.state = { newDefinitions: [], offsetX: 0, offsetY: 0 };
   }
 
   onClick(ev) {
@@ -23,11 +24,13 @@ export default class DefinitionBox extends Component {
   }
 
   render() {
+    console.log('state', this.props);
     const style = {
+      display: 'block',
       backgroundColor: 'blue',
       position: 'absolute',
-      left: this.props.left + 25,
-      top: this.props.top + 25,
+      left: this.props.x,
+      top:  this.props.y,
     }
 
     return(
@@ -40,14 +43,14 @@ export default class DefinitionBox extends Component {
           }
           <AddDefinition addDefinition={this.addDefinition} />
         </ul>
-        <a onClick={this.onClick} href='.'>Close</a>
+        <a onClick={this.onClick}>Close</a>
       </div>
     )
   }
 }
 
 DefinitionBox.propTypes = {
-  left: PropTypes.number.isRequired,
-  top: PropTypes.number.isRequired,
+  x: PropTypes.number.isRequired,
+  y: PropTypes.number.isRequired,
   word: PropTypes.object.isRequired,
 }
